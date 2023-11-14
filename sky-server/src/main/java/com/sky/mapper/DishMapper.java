@@ -17,6 +17,14 @@ import java.util.List;
 public interface DishMapper {
 
     /**
+     * 根据套餐id查询菜品
+     * @param id
+     * @return
+     */
+    @Select("select * from dish where id in (select dish_id from setmeal_dish where setmeal_id = #{id})")
+    List<Dish> getBySetmealId(Long id);
+
+    /**
      * 根据分类id查询菜品数量
      * @param categoryId
      * @return
